@@ -1,0 +1,21 @@
+   oddelovac slov na radce je v IFS
+
+
+typy apostrofu: ' " `
+
+postup pri vyhodnocovani:
+(
+   lexikalni analyza: rozlozeni radku na slova (bere v potaz uvozovky a apostrofy), pozor na `` vnorene uvnitr uvozovek
+   substituce: nahrada za ~, dosazeni za promenne, filename generation (muze z jednoho tokenu vzniknout i tokenu vice)
+   syntakticka analyza
+   spusteni programu
+)
+
+   rozlozeni radku podle mezer (IFS)
+   expanze (?, *, ~) -> muze vzniknout i vice casti, a substituce za promenne
+   lexikalni analyza
+   syntakticka analyza -> vnitrni forma
+   pro kazdy spousteny program najit jeho absolutni cestu
+   vykonat vnitrni formu
+
+

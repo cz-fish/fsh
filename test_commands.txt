@@ -1,0 +1,11 @@
+1)  i=0; while [ $i -lt 5 ] ; do i=$(($i+1)); echo $i; done
+2)  if true ; then echo a ; else echo b; fi
+3)  if false ; then echo a ; else echo b; fi
+4)  l=p*; for f in $l; do file $f; done
+5)  for f in *; do case $f in *.c)echo -n c;; *.h)echo -n h;; *)echo -n " ";; esac; done && echo
+6)  true || echo "a" && echo "b"
+    false && echo "a" || echo "b"
+7)  false | echo $? | true | echo $? | false ; echo $?
+    case a in b) false;; c) false;; esac ; echo $?
+8)  if [ $((3**3)) -eq $((54 >>1)) ] ; then echo equal; else echo not equal; fi
+

@@ -1,0 +1,56 @@
+   bug: ve funkci na filename generation byl nalezen bug pri rekurzivnim pruchodu adresaru, ktere v nazvu obsahuji specialni znaky (*,?,[,]). opravena funkce je v projektu UPlaF (+pridany funkce escape_with_extrasize, unescape_portion)
+   bug: chyba ve filename generation pri kombinaci " a ' (jmenovite pripad, kdy ' je posledni znak uzavreny v ""), viz echo "'"
+   error typu unexpected token [eof] by se nemel hlasit, ale mel by vest k pozadovani dalsiho vstupu od uzivatele (ps2) (+mista oznacena TODO: NEED MORE INPUT)
+   pri filenamegen a quote removal pozor na odstraneni znaku ' " ktere do nazvu patri. mely by se nejak odslashovat
+   handler pro SIGINT, ^C by nemel ukoncit program (funkce signal_handler je vytvorena, chtela by jeste trochu opravit)
+   pri vytvareni uloh na pozadi jim presmerovat vstup (aby se nepraly s shellem o klavesnici a taky aby nedostavaly SIGINT), je ale potreba potom implementovat fg,bg a expandovat %
+.  expanze
+.  substituce
+.  .syntaxe, .vyhodnoceni, .spusteni
+.  .jobs (>> fg,bg)
+.  vestavene prikazy (//cd, //export, //unexport, //exec, //debug, alias, unalias)
+>> alias
+>> FIX \u v PS1 aby fungovalo i pri su
+>> tilde expansion
+>> io redirect
+>> here document
+>> subshell
+>> GNU readline + command history
+>> pri spousteni podprocesu spravne nastavit environ ze vsech definovanych promennych (nebo primo vsechny promenne resit pres environ)
+>> funkce
+// klicove slovo function
+// v tokenizeru zachytit token IO_NUMBER jako word ve tvaru: [cislo]> nebo [cislo]<, >< nebudou operatory
+// odstranit segfault pri ^D
+// expanze se nemuze provadet pri syntakticke analyze, ale az pri vyhodnoceni (tesne pred expanzi se udela jeste substituce). kvuli tomu je potreba, aby nody ve stromu abstraktni syntaxe mely taky flagy expandable a substitute. expanze muze vypadat treba tak, ze jeden uzel GRM_WORD se expanduje na frontu GRM_WORDU, ktera se pak dosadi na misto prvniho WORDu. puvodnich GRM_WORDU ale muze byt i vic za sebou a poradi musi byt dodrzeno
+// pattern_filename_gen by mel pocitat s tim, ze muze byt zadana cesta (absolutni nebo relativni) a ze muze taky obsahovat wildcards
+// mezi promenne pridat taky promenne prostredi (env)
+// v substitucich a .expanzich dat pozor na ' " \ ktere se v retezci mohou vyskytovat, protoze quote_removal se provadi az nakonec
+// zprovoznit neinteraktivni spousteni (zatim tomu asi vadi readline nebo co)
+// pattern by nemel hlasit chybu kdyz je v retezci jenom [ a chybi ] ale mel by [ brat jako konstantni znak
+// pri prirazeni by se melo taky delat quote removal na hodnotu
+
+testy:
+AB test
+.  simple command
+.  braces
+.  subshell
+.  if
+.  for
+.  case
+.  do (compound list)
+.  while
+.  until
+.  linebreak
+.  newline_list
+.  and/or
+.  pipeline
+.  term
+.  function
+.  redirection
+   assignment
+   here document
+
+A-vytvoreni stromu
+B-exekuce
+
+
